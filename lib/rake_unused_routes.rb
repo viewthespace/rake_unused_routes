@@ -1,5 +1,5 @@
 require "rake_unused_routes/version"
 
-module RakeUnusedRoutes
+class RakeUnusedRoutes
   # Your code goes here...
 end
