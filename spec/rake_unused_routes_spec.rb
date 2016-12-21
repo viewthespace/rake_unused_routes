@@ -1,11 +1,12 @@
 require "spec_helper"
 
 describe RakeUnusedRoutes do
-  it "has a version number" do
-    expect(RakeUnusedRoutes::VERSION).not_to be nil
+
+  subject{ RakeUnusedRoutes.new(Rails.application) }
+
+
+  specify "all routes are unused" do
+    expect(subject.unused_routes).to eq([])
   end
 
-  it "does something useful" do
-    expect(true).to eq(true)
-  end
 end

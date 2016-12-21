@@ -1,5 +1,14 @@
 require "rake_unused_routes/version"
 
 class RakeUnusedRoutes
-  # Your code goes here...
+
+  def initialize app, used_routes: []
+    @app = app
+    @unused_routes = unused_routes
+  end
+
+  def unused_routes
+    []
+  end
+
 end
