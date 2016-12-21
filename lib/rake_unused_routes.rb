@@ -8,7 +8,7 @@ class RakeUnusedRoutes
   end
 
   def unused_routes
-    []
+    Rails.application.routes.routes
   end
 
 end
