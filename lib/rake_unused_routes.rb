@@ -13,6 +13,11 @@ class RakeUnusedRoutes
     end
   end
 
+  def formatted_unused_routes
+    inspector = ActionDispatch::Routing::RoutesInspector.new(unused_routes)
+    inspector.format(ActionDispatch::Routing::ConsoleFormatter.new, ENV['CONTROLLER'])
+  end
+
   private
 
   def newrelic_formatting route
