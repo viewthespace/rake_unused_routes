@@ -64,4 +64,17 @@ describe RakeUnusedRoutes do
 
   end
 
+  describe 'rake task' do
+    before do
+      ENV['CONTROLLER_SUMMARY'] = './spec/controller_summary.csv'
+      require 'rake'
+      load "./lib/tasks/unused_routes.rake"
+    end
+
+    specify do
+       Rake::Task[:unused_routes].execute
+    end
+
+  end
+
 end

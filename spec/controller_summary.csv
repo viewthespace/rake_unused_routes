@@ -1,0 +1,4 @@
+Action,Apdex,Count,Avg (ms),SD (ms),Min (ms),Max (ms),Total (ms),Total (% time),Dissat (%)
+HttpDispatcher,0.96 [0.5],2050061.0,171,328,0.272,26600,350000000,100.0,100.0
+UsersController#create,0.76 [0.5],92011.0,539,341,8.28,11200,49600000,14.1,24.7
+Admin::ShopsController#index,0.81 [0.5],82919.0,442,198,6.25,7640,36700000,10.5,17.8

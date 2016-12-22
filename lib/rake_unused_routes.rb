@@ -1,4 +1,5 @@
 require "rake_unused_routes/version"
+require 'csv'
 
 class RakeUnusedRoutes
 
@@ -16,6 +17,16 @@ class RakeUnusedRoutes
   def formatted_unused_routes
     inspector = ActionDispatch::Routing::RoutesInspector.new(unused_routes)
     inspector.format(ActionDispatch::Routing::ConsoleFormatter.new, ENV['CONTROLLER'])
+  end
+
+  def self.actions_from_newrelic(file)
+    new_relic_controller_actions = []
+    CSV.foreach(file, :col_sep => ",") do |row|
+      if row.first && !['HttpDispatcher','Action'].include?(row.first.chomp) && !row.first.chomp.include?('#(template only)')
+        new_relic_controller_actions << row.first.chomp
+      end
+    end
+    new_relic_controller_actions.uniq
   end
 
   private
