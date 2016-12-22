@@ -3,6 +3,12 @@ require 'csv'
 
 class RakeUnusedRoutes
 
+  class Railtie < ::Rails::Railtie
+    rake_tasks do
+      load File.join(File.dirname(__FILE__), 'tasks/unused_routes.rake')
+    end
+  end
+
   def initialize app, used_routes: []
     @app = app
     @used_routes = used_routes
