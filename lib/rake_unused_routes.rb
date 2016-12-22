@@ -4,11 +4,25 @@ class RakeUnusedRoutes
 
   def initialize app, used_routes: []
     @app = app
-    @unused_routes = unused_routes
+    @used_routes = used_routes
   end
 
   def unused_routes
-    Rails.application.routes.routes
+    routes.reject do |route|
+      @used_routes.include?( newrelic_formatting(route) )
+    end
+  end
+
+  private
+
+  def newrelic_formatting route
+    requirements = route.requirements
+    "#{requirements[:controller].camelize}Controller##{requirements[:action]}"
+  end
+
+  def routes
+    Rails.application.routes.routes.select{ |route| route.requirements[:controller] }.
+        reject {|r| r.requirements[:controller].starts_with? 'rails/' }
   end
 
 end
