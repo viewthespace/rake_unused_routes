@@ -1,3 +1,5 @@
+[![CircleCI](https://circleci.com/gh/viewthespace/rake_unused_routes.svg?style=svg)](https://circleci.com/gh/viewthespace/rake_unused_routes)
+
 # RakeUnusedRoutes
 
 Identify unused routes within your rails routes.rb file by reading in a csv file of all controllers hit within a given time period.  The csv file can most easily be generated with New Relic.  
