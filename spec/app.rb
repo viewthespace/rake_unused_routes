@@ -25,3 +25,4 @@ module Admin; class ShopsController < ApplicationController
 end; end
 
 DummyApp::Application.initialize!
+DummyApp::Application.load_tasks
