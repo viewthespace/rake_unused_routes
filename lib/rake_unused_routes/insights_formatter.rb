@@ -5,10 +5,6 @@ class RakeUnusedRoutes
     class << self
 
       def convert_from_insights!
-        csv_file = CSV.generate do |csv|
-          csv << [ 'Action' ]
-          actions_from_insights.each{ |action| csv << [ action ] }
-        end
         FileUtils.mkdir_p tmp_dir_path
         File.open("#{tmp_dir_path}/controller_summary.csv", 'w+') do  |file|
           file.write csv_file
@@ -16,6 +12,13 @@ class RakeUnusedRoutes
       end
 
       private
+
+      def csv_file
+        CSV.generate do |csv|
+          csv << [ 'Action' ]
+          actions_from_insights.each{ |action| csv << [ action ] }
+        end
+      end
 
       def actions_from_insights
         CSV.read(insights_csv_file_path).
