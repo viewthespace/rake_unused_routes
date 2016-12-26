@@ -13,7 +13,7 @@ class RakeUnusedRoutes
     end
 
     let(:expected_results) do
-      "Action\nAdmin::ShopsController#show\nUsersController#create\nUsersController#show\n"
+      "Action\nAdmin::ShopsController#index\nAdmin::ShopsController#show\nUsersController#create\nUsersController#show\n"
     end
 
     specify do
