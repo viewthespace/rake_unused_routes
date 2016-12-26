@@ -6,7 +6,7 @@ class RakeUnusedRoutes
 
       def convert_from_insights!
         FileUtils.mkdir_p tmp_dir_path
-        File.open("#{tmp_dir_path}/controller_summary.csv", 'w+') do  |file|
+        File.open("#{tmp_dir_path}/controller_summary.csv", 'w+') do |file|
           file.write csv_file
         end
       end
