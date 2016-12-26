@@ -38,7 +38,7 @@ The easiest way to generate a CSV file is by exporting all controllers from the 
 
 ![New Relic Transactions](https://vts-monosnap.s3.amazonaws.com/Transactions_-_VTS_Production_-_New_Relic_2016-12-22_17-48-43__eprql.png)
 
-Place the exported file under $RAILS_ROOT/tmp/ with the name controller_summary.csv
+Copy exported file to $RAILS_ROOT/tmp/controller_summary.csv
 
 #### Generate unused_routes
 
