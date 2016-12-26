@@ -1,0 +1,6 @@
+Name,Transactions
+Controller/users/create,3495597
+Controller/users/show,3495597
+Controller/Middleware/Rack/ActionDispatch::GzStatic/call,2827659
+Controller/Middleware/Rack/ActionDispatch::Routing::RouteSet/call,1248348
+Controller/admin/shops/show,701704

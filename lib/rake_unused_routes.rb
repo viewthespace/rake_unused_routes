@@ -1,4 +1,5 @@
 require "rake_unused_routes/version"
+require "rake_unused_routes/insights_formatter"
 require 'csv'
 
 class RakeUnusedRoutes
