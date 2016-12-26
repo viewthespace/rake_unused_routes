@@ -1,5 +1,6 @@
 [![CircleCI](https://circleci.com/gh/viewthespace/rake_unused_routes.svg?style=svg)](https://circleci.com/gh/viewthespace/rake_unused_routes)
 [![Code Climate](https://codeclimate.com/repos/585f1177508ac60076005e46/badges/bfd930692c43034fec1f/gpa.svg)](https://codeclimate.com/repos/585f1177508ac60076005e46/feed)
+[![Test Coverage](https://codeclimate.com/repos/585f1177508ac60076005e46/badges/bfd930692c43034fec1f/coverage.svg)](https://codeclimate.com/repos/585f1177508ac60076005e46/coverage)
 
 # RakeUnusedRoutes
 
