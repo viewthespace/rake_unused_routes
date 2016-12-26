@@ -64,11 +64,29 @@ describe RakeUnusedRoutes do
 
   end
 
-  describe 'rake task' do
+  describe 'from insights rake task' do
+
     before do
-      ENV['CONTROLLER_SUMMARY'] = './spec/controller_summary.csv'
-      require 'rake'
-      load "./lib/tasks/unused_routes.rake"
+      ENV['INSIGHTS_CONTROLLERS'] =
+        "#{File.dirname(__FILE__)}/rake_unused_routes/insights_controllers.csv"
+    end
+
+    let(:expected_output) do
+      "  Prefix Verb URI Pattern          Controller#Action\n   users GET  /users(.:format)     users#index\nnew_user GET  /users/new(.:format) users#new"
+    end
+
+    specify do
+      expect(STDOUT).to receive(:puts).with expected_output
+      Rake::Task['unused_routes:from_insights'].execute
+    end
+
+  end
+
+
+  describe 'default rake task' do
+
+    before do
+      ENV['CONTROLLER_SUMMARY'] = "#{File.dirname(__FILE__)}/controller_summary.csv"
     end
 
     let(:expected_output) do
