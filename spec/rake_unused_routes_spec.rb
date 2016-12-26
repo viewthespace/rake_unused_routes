@@ -34,9 +34,9 @@ describe RakeUnusedRoutes do
 
   describe 'all routes are used' do
 
-    let(:used_routes){ %w{ UsersController#index UsersController#create UsersController#new UsersController#show Admin::ShopsController#index } }
+    let(:used_actions){ %w{ UsersController#index UsersController#create UsersController#new UsersController#show Admin::ShopsController#index } }
 
-    subject{ RakeUnusedRoutes.new(Rails.application, used_routes: used_routes) }
+    subject{ RakeUnusedRoutes.new(Rails.application, used_actions: used_actions) }
 
     it 'returns no routes' do
       expect(subject.unused_routes).to be_empty
@@ -46,9 +46,9 @@ describe RakeUnusedRoutes do
 
   describe 'all but one route is used' do
 
-    let(:used_routes){ %w{ UsersController#create UsersController#new UsersController#show Admin::ShopsController#index } }
+    let(:used_actions){ %w{ UsersController#create UsersController#new UsersController#show Admin::ShopsController#index } }
 
-    subject{ RakeUnusedRoutes.new(Rails.application, used_routes: used_routes) }
+    subject{ RakeUnusedRoutes.new(Rails.application, used_actions: used_actions) }
 
     let(:formatted_unused_routes) do
       "Prefix Verb URI Pattern      Controller#Action\n users GET  /users(.:format) users#index"
@@ -71,8 +71,16 @@ describe RakeUnusedRoutes do
       load "./lib/tasks/unused_routes.rake"
     end
 
+    let(:expected_output) do
+      "  Prefix Verb URI Pattern          Controller#Action\n" +
+        "   users GET  /users(.:format)     users#index\n" +
+        "new_user GET  /users/new(.:format) users#new\n" +
+        "    user GET  /users/:id(.:format) users#show"
+    end
+
     specify do
-       Rake::Task[:unused_routes].execute
+      expect(STDOUT).to receive(:puts).with expected_output
+      Rake::Task[:unused_routes].execute
     end
 
   end
