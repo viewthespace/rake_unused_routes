@@ -22,7 +22,11 @@ And then execute:
 
 ## Usage
 
-### Generate CSV file
+In order to see unused routes, we need an export of all controller actions that are still in use.  An easy way of generating the export is with either the basic NewRelic RPM or NewRelic Insights.
+
+### From a NewRelic RPM Web Transactions CSV
+
+#### Generate the CSV
 
 The easiest way to generate a CSV file is by exporting all controllers from the all transactions page within newrelic.  To get there:
 
@@ -36,12 +40,40 @@ The easiest way to generate a CSV file is by exporting all controllers from the 
 
 Place the exported file under $RAILS_ROOT/tmp/ with the name controller_summary.csv
 
-### Generate unused routes
+#### Generate unused_routes
 
 Run:
 
 ```
 rake unused_routes
+```
+### From a NewRelic Insights export
+
+The advantage of using NewRelic Insights export is that dependening on your retention policies, Insights can generate a report for a much great length of time than 7 days.  Our current NewRelic policies allow for pulling usage data from 9 weeks ago.
+
+#### Generate the CSV
+
+Navigate to Insights and run the following query:
+
+```sql
+SELECT count(*) 
+from Transaction 
+where transactionSubType ='Controller' 
+facet name 
+since 9 weeks ago 
+limit 1000
+```
+
+Export the results to a csv file:
+
+![Insight Export to CSV](https://vts-monosnap.s3.amazonaws.com/Insights_Home_2016-12-26_15-06-52__icat6.png)
+
+Copy the results to $RAILS_ROOT/tmp/insights_controllers.csv .
+
+Then run:
+
+```
+rake unused_routes:from_insights
 ```
 
 ## Development
