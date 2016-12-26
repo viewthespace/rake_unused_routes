@@ -14,13 +14,17 @@ class RakeUnusedRoutes
             csv << [ 'Action' ]
             actions.each{ |action| csv << [ action ] }
           end
-          FileUtils.mkdir_p './tmp'
-          File.open('./tmp/controller_summary.csv', 'w+') do  |file|
+          FileUtils.mkdir_p tmp_dir_path
+          File.open("#{tmp_dir_path}/controller_summary.csv", 'w+') do  |file|
             file.write csv_file
           end
       end
 
       private
+
+      def tmp_dir_path
+        './tmp'
+      end
 
       def insights_csv_file_path
         ENV.fetch('INSIGHTS_CONTROLLERS', './tmp/insights_controllers.csv')
